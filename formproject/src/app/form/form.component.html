@@ -1,0 +1,126 @@
+<div class="container">
+  <form name="myForm" class="needs-validation was-validated">
+    <div class="row card-deck">
+      <!--Name-->
+      <div class="mb-3 col-sm-4">
+        <div class="card-header bold">Name</div>
+        <div class="card-body">
+          <p class="card-text">{{data.name}}</p>
+        </div>
+      </div>
+
+      <!--Date Added-->
+      <div class="mb-3 col-sm-4">
+        <div class="card-header bold">Date Added</div>
+        <div class="card-body">
+          <p class="card-text">{{data.date_added}}</p>
+        </div>
+      </div>
+
+      <!--Mash ID-->
+      <div class="mb-3 col-sm-4">
+          <div class="card-header bold">Mash ID</div>
+          <div class="card-body">
+            <p class="card-text">{{data.mashID}}</p>
+          </div>
+        </div>
+    </div>
+    <div class="row card-deck">
+
+      <!--Status-->
+      <div class="mb-3 col-sm-4">
+        <div class="card-header bold">Status</div>
+        <div class="card-body">
+          <p class="card-text">{{data.status}}</p>
+        </div>
+      </div>
+
+      <!--Involved Entities-->
+      <div class="mb-3 col-sm-4">
+        <div class="card-header bold">Involved Entities</div>
+        <div class="card-body">
+          <p class="card-text">{{data.involved_entities}}</p>
+        </div>
+      </div>
+
+      <!--Deal Code-->
+      <div class="mb-3 col-sm-4">
+        <div class="card-header bold">Deal Code</div>
+        <div class="card-body">
+          <p class="card-text">{{data.deal_code}}</p>
+        </div>
+      </div>
+    </div>
+
+    <!--Line Splitter-->
+    <hr>
+
+    <div class="row card-deck" id="splitter">
+
+      <!--Date Committed-->
+      <div class="mb-3 col-sm-6">
+        <div class="card-header bold">Date Committed</div>
+        <div class="card-body input-group">
+
+            <!--Date Committed Clear Button-->
+            <button class="btn btn-outline-secondary close" value="Reset" data-toggle="tooltip" data-placement="top" title="Clear Field" (click)="clearDateCommitted()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          <input type="date" class="form-control center" required name="dateCommitted" [(ngModel)]="data.date_committed"
+          aria-label="Default" aria-describedby="inputGroup-sizing-default">
+        </div>
+      </div>
+
+      <!--Closing Date-->
+      <div class="mb-3 col-sm-6">
+        <div class="card-header bold">Closing Date</div>
+        <div class="card-body input-group">
+
+            <!--Closing Date Clear Button-->
+            <button class="btn btn-outline-secondary close" value="Reset" data-toggle="tooltip" data-placement="top" title="Clear Field" (click)="clearClosingDate()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          <input type="date" class="form-control center" required name="closingDate" [(ngModel)]="data.closing_date"
+          aria-label="Default" aria-describedby="inputGroup-sizing-default">
+        </div>
+      </div>
+    </div>
+
+    <div class="row card-deck">
+      <!--TSSP Dealsize-->
+
+      <div class="mb-3 col-sm-6">
+        <div class="card-header bold">TSSP DealSize(MM)</div>
+        <div class="card-body input-group">
+
+            <!--TSSP Dealsize Clear Button-->
+            <button class="btn btn-outline-secondary close" value="Reset" (click)="clearTsspDealSize()" data-toggle="tooltip" data-placement="top" title="Clear Field">
+                <span aria-hidden="true">&times;</span>
+            </button>
+          <input type="number" class="form-control center" required name="tsspDeal" [(ngModel)]="data.tssp_dealsize"
+          aria-label="Default" aria-describedby="inputGroup-sizing-default">
+        </div>
+      </div>
+      
+      <!--Total Deal Size-->
+      <div class="mb-3 col-sm-6">
+        <div class="card-header bold">Total Deal Size(MM)</div>
+        <div class="card-body input-group">
+
+            <!--Total Deal Size Clear Button-->
+            <button class="btn btn-outline-secondary close" value="Reset" title="Clear Field" (click)="clearTotalDealSize()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          <input type="number" class="form-control center" required name="totalDeal" [(ngModel)]="data.total_deal_size" 
+          aria-label="Default" aria-describedby="inputGroup-sizing-default">
+        </div>
+      </div>
+    </div>
+
+     <!--Reset and Update Button-->
+     <input class="btn btn-outline-danger col-sm-12 my-4" type="button" (click)="clearAll()" value="Reset All Fields">
+     <input class="btn btn-outline-primary col-sm-12" type="submit" value="Update" 
+     (click)="updateInput(data.date_committed, data.closing_date, data.tssp_dealsize, data.total_deal_size, selectedId)"
+     [disabled]="(data.date_committed === null || data.closing_date === null) || (data.total_deal_size === undefined || data.tssp_dealsize === undefined)">
+  </form>
+</div>
